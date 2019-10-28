@@ -1,0 +1,347 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Reservation",
+    "description": "Table Reservation",
+    "contact": {
+      "name": "Yurii Kniazyk",
+      "email": "y.kniazyk@gmail.com",
+      "url": "https://github.com/YuriiKniazyk"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "localhost:3300",
+  "basePath": "/",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/reservations": {
+      "post": {
+        "description": "This method is used to create reservation",
+        "parameters": [
+          {
+            "name": "Create",
+            "in": "body",
+            "required": true,
+            "description": "Create reservation",
+            "schema": {
+              "properties": {
+                "guestCount": {
+                  "type": "number",
+                  "required": true,
+                  "exampel": 10
+                },
+                "dataTime": {
+                  "type": "string",
+                  "required": true,
+                  "exampel": "28.10.19"
+                },
+                "startReservation": {
+                  "type": "number",
+                  "required": true,
+                  "exampel": "15"
+                },
+                "endReservation": {
+                  "type": "number",
+                  "required": true,
+                  "exampel": "22"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Create success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "succses": {
+                  "type": "boolean",
+                  "exampel": true
+                },
+                "msg": {
+                  "type": "string",
+                  "exampel": "Reservation created!"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "This error will be thawed when some some filed is empty",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Some field is empty"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reservations/:id": {
+      "put": {
+        "description": "This method is used to change reservation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "params",
+            "required": true,
+            "description": "Change reservation",
+            "schema": {
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "required": true,
+                  "exampel": 10
+                }}}
+          },
+          {
+            "name": "change",
+            "in": "body",
+            "required": true,
+            "description": "Change reservation",
+            "schema": {
+              "properties": {
+                "guestCount": {
+                  "type": "number",
+                  "required": true,
+                  "exampel": 10
+                },
+                "dataTime": {
+                  "type": "string",
+                  "required": true,
+                  "exampel": "28.10.19"
+                },
+                "startReservation": {
+                  "type": "number",
+                  "required": true,
+                  "exampel": "15"
+                },
+                "endReservation": {
+                  "type": "number",
+                  "required": true,
+                  "exampel": "22"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "succses": {
+                  "type": "boolean",
+                  "exampel": true
+                },
+                "msg": {
+                  "type": "string",
+                  "exampel": "ok"
+                },
+                "idReservation": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": "1"
+                    },
+                    "guestCount": {
+                      "type": "number",
+                      "example": 10
+                    },
+                    "dataTime": {
+                      "type": "string",
+                      "example": "28.10.19"
+                    },
+                    "startReservation": {
+                      "type": "number",
+                      "example": 10
+                    },
+                    "endReservation": {
+                      "type": "number",
+                      "example": 18
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "This error will be thawed when some some filed is empty",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Some field is empty"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reservations/{id}": {
+      "delete": {
+        "description": "This method is used to delete reservation",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "params",
+            "required": true,
+            "type": "number",
+            "description": "Delete reservation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "exampel": 8
+                }
+              }}
+          }
+          
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "succses": {
+                  "type": "boolean",
+                  "exampel": true
+                },
+                "msg": {
+                  "type": "string",
+                  "exampel": "ok"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "This error will be thawed when parametr id undefined",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "WHERE parameter \"id\" has invalid \"undefined\" value"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/reservations/:{id}": {
+      "get": {
+        "description": "This method is used to list reservation of id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "params",
+            "required": true,
+            "type": "number",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "exampel": 8
+                }
+              }}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "succses": {
+                  "type": "boolean",
+                  "exampel": true
+                },
+                "msg": {
+                  "type": "boolean",
+                  "exampel": true
+                },
+                "dataReservation": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number",
+                      "example": 1
+                    },
+                    "guestCount": {
+                      "type": "number",
+                      "example": 5
+                    },
+                    "dataTime": {
+                      "type": "string",
+                      "example": "28.10.19"
+                    },
+                    "startReservation": {
+                      "type": "number",
+                      "example": 17
+                    },
+                    "endReservation": {
+                      "type": "number",
+                      "example": 21
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "This error will be thawed when some error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "error.message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

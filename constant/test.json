@@ -1,0 +1,5 @@
+{
+    "knexfile": "../knexfile.js",
+    "itsStartupServer": true,
+    "port": "3300"    
+}
